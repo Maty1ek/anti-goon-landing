@@ -9,6 +9,17 @@ export default function Home() {
   // literal character via a JS expression.
   const NBSP = " ";
 
+  // Social + contact links. Sourced from environment variables so they
+  // can be set per-deploy (Vercel project env -> Production) without
+  // touching code. The fallbacks below are placeholders; configure the
+  // env vars on Vercel before pointing real traffic at this site.
+  const TIKTOK_URL    = process.env.NEXT_PUBLIC_TIKTOK_URL    || "https://www.tiktok.com/@antigoon";
+  const X_URL         = process.env.NEXT_PUBLIC_X_URL         || "https://x.com/antigoon";
+  const INSTAGRAM_URL = process.env.NEXT_PUBLIC_INSTAGRAM_URL || "https://instagram.com/antigoon";
+  const DISCORD_URL   = process.env.NEXT_PUBLIC_DISCORD_URL   || "https://discord.gg/antigoon";
+  const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "hello@anti-goon.app";
+
+
   return (
     <>
       {/* Soft animated background */}
@@ -615,24 +626,28 @@ export default function Home() {
             <p className="footer-tagline">
               AI that sees your screen and blurs every woman it detects.
             </p>
-            <a className="footer-email" href="mailto:hello@anti-goon.app">
-              hello@anti-goon.app
+            <a className="footer-email" href={`mailto:${CONTACT_EMAIL}`}>
+              {CONTACT_EMAIL}
             </a>
             <div className="footer-socials" aria-label="Social media">
               <a
                 className="footer-social"
-                href="https://www.tiktok.com/@antigoon"
+                href={TIKTOK_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="TikTok"
               >
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M14 3v9.5a3.5 3.5 0 1 1-3.5-3.5h.5V6.4h-.5a6.6 6.6 0 1 0 6.6 6.6V8.4a7.6 7.6 0 0 0 4.4 1.4V6.7A4.7 4.7 0 0 1 17 3h-3z" />
-                </svg>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/tiktok-icon.png"
+                  alt=""
+                  aria-hidden="true"
+                  className="footer-social-img"
+                />
               </a>
               <a
                 className="footer-social"
-                href="https://x.com/antigoon"
+                href={X_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="X / Twitter"
@@ -643,7 +658,7 @@ export default function Home() {
               </a>
               <a
                 className="footer-social"
-                href="https://instagram.com/antigoon"
+                href={INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -656,7 +671,7 @@ export default function Home() {
               </a>
               <a
                 className="footer-social"
-                href="https://discord.gg/antigoon"
+                href={DISCORD_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Discord"

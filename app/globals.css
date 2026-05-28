@@ -2081,9 +2081,17 @@ img, svg { display: block; max-width: 100%; }
   color: var(--muted);
   transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.2s;
 }
-.footer-social svg {
+.footer-social svg,
+.footer-social-img {
   width: 18px;
   height: 18px;
+}
+/* PNG icons don't inherit currentColor; keep them visible as-is on
+   the card background. The hover transform on .footer-social still
+   applies, so the icon lifts the same way the SVG icons do. */
+.footer-social-img {
+  display: block;
+  object-fit: contain;
 }
 .footer-social:hover {
   color: var(--lav-deep);
