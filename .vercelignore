@@ -1,0 +1,5 @@
+# The 216 MB DMG in public/ is only for LOCAL download testing. The real
+# distribution build lives on a public GitHub Release, not in the Vercel
+# deploy (Vercel isn't the right host for a binary this size). Keep this
+# out of every deploy.
+public/Anti-Goon-0.1.0.dmg
