@@ -6,17 +6,15 @@
 // app is broken." When you notarise later, you can delete the Gatekeeper
 // section and this page becomes a plain download/landing.
 
-// ─────────────────────────────────────────────────────────────────────
-// LOCAL TEST WIRING: currently points at the DMG copied into /public so
-// you can test the download on localhost. This 216 MB file is excluded
-// from deploys via .vercelignore — do NOT ship it this way.
+// Download URL served from a public GitHub Release. Repo is intentionally
+// public so this asset is reachable without auth; product paywall lives
+// in Supabase + Whop, not in the binary.
 //
-// FOR PRODUCTION: upload dist/Anti-Goon-0.1.0.dmg to a public GitHub
-// Release and replace the value below with the asset URL, e.g.:
-//   https://github.com/<you>/anti-goon-releases/releases/download/v0.1.0/Anti-Goon-0.1.0.dmg
-// then delete public/Anti-Goon-0.1.0.dmg.
-const MAC_DMG_URL = "/Anti-Goon-0.1.0.dmg";
-// ─────────────────────────────────────────────────────────────────────
+// To ship a new version: bump version in antigoon.spec, rebuild DMG,
+// publish a new GitHub Release with the tag below updated, then change
+// the constant here.
+const MAC_DMG_URL =
+  "https://github.com/Maty1ek/anti-goon-landing/releases/download/v0.1.0/Anti-Goon-0.1.0.dmg";
 
 export const metadata = {
   title: "Install Anti-Goon for macOS",
