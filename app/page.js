@@ -37,7 +37,16 @@ export default function Home() {
 
           <p className="hero-tagline fade-in delay-1">
             <span className="tag-line-top">
-              AI that can see your screen and blur all of the
+              {/* Two phrasings: full sentence on tablets+, shorter on
+                  phones (the long version overflows 375px viewports
+                  even at 13px font). CSS .tag-line-top-phone is
+                  hidden above 560px and shown below. */}
+              <span className="tag-line-top-desktop">
+                AI that can see your screen and blur all of the
+              </span>
+              <span className="tag-line-top-phone">
+                Sees your screen. Blurs every
+              </span>
             </span>
             <span className="tag-line-bottom">
               <span className="rot-wrap">

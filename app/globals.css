@@ -306,9 +306,19 @@ img, svg { display: block; max-width: 100%; }
 }
 .tag-line-top {
   display: block;
-  font-size: clamp(18px, 2.2vw, 22px);
+  font-size: clamp(14px, 2.2vw, 22px);
   line-height: 1.4;
   color: var(--ink-2);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+/* Two-phrasing tagline: full sentence shown on tablet+, shorter
+   replacement on phones. Keeps the rotating-word punchline
+   coherent at any width without depending on text wrapping. */
+.tag-line-top-phone { display: none; }
+@media (max-width: 560px) {
+  .tag-line-top-desktop { display: none; }
+  .tag-line-top-phone   { display: inline; }
 }
 .tag-line-bottom {
   display: flex;
@@ -2540,4 +2550,325 @@ img, svg { display: block; max-width: 100%; }
   margin: 0 2px;
   line-height: 1.3;
   vertical-align: 1px;
+}
+
+/* ============================================================
+   RESPONSIVE LAYER — comprehensive tablet + mobile overrides
+   Appended last so it wins specificity ties against rules above.
+   Breakpoints, big to small:
+     1024px — small laptop / tablet landscape
+      768px — tablet portrait / large phone landscape
+      560px — phone portrait
+      380px — small phones / overflow safety net
+   Each tier *only* changes what actually needs changing at that
+   width; rules cascade downward so a small phone gets all rules
+   from wider tiers too.
+   ============================================================ */
+
+/* Standalone pages (/install, /privacy, /success) — replaces the
+   inline paddingTop:120px that used to live in their JSX. */
+.section-standalone {
+  padding-top: 120px;
+}
+
+/* ---- 1024px: tablet landscape, small laptops ---- */
+@media (max-width: 1024px) {
+  .section {
+    padding: 60px 24px;
+  }
+  .section-standalone {
+    padding-top: 100px;
+  }
+  .hero {
+    padding: 96px 24px 32px;
+  }
+  .hero-tagline {
+    margin-bottom: 36px;
+  }
+  .section-head {
+    margin-bottom: 32px;
+  }
+  .how-card,
+  .mode-card {
+    padding: 28px 24px 24px;
+  }
+  .trig-card {
+    padding: 26px 22px 22px;
+  }
+}
+
+/* ---- 768px: tablet portrait, large phone landscape ---- */
+@media (max-width: 768px) {
+  .section {
+    padding: 52px 20px;
+  }
+  .section-title {
+    font-size: clamp(32px, 6.5vw, 54px);
+    line-height: 1.08;
+  }
+  .section-standalone {
+    padding-top: 84px;
+  }
+  .hero {
+    padding: 84px 20px 24px;
+  }
+  .hero-title {
+    margin-bottom: 24px;
+  }
+  .hero-tagline {
+    margin-bottom: 28px;
+  }
+  .hero-buttons {
+    gap: 10px;
+  }
+  .hero-buttons .btn-lg {
+    padding: 14px 22px;
+    font-size: 14px;
+  }
+  /* Punchline tightens — the line was burning the full row width
+     on narrow tablets even though clamp lowered the size. */
+  .punchline {
+    padding: 44px 20px;
+  }
+  .section-head {
+    margin-bottom: 28px;
+  }
+  .eyebrow {
+    padding: 5px 18px 5px 5px;
+    margin-bottom: 22px;
+  }
+  .eyebrow-num {
+    width: 32px;
+    height: 32px;
+    font-size: 13px;
+  }
+  .eyebrow-text {
+    font-size: 13px;
+    letter-spacing: 2.2px;
+  }
+  .section-sub {
+    font-size: 15.5px;
+  }
+  /* Make sure all card grids that already collapse at 900px also
+     have tighter inner padding on tablet. */
+  .how-card,
+  .mode-card,
+  .trig-card,
+  .hk-card,
+  .faq-item {
+    padding: 24px 22px;
+  }
+  .how-card h3,
+  .mode-card h3 {
+    font-size: 20px;
+  }
+  /* Footer: brand block + nav links sit on the same row by default;
+     once it's tight, force the link row to wrap fully under the
+     brand block instead of squeezing into a column. */
+  .footer {
+    padding: 40px 24px 28px;
+  }
+  .footer-top {
+    gap: 24px;
+  }
+  .footer-links {
+    gap: 20px;
+  }
+}
+
+/* ---- 560px: phone portrait ---- */
+@media (max-width: 560px) {
+  .section {
+    padding: 44px 16px;
+  }
+  .section-title {
+    font-size: clamp(26px, 7.5vw, 38px);
+    line-height: 1.1;
+  }
+  .section-sub {
+    font-size: 14.5px;
+    line-height: 1.55;
+  }
+  /* The card body text reads too tight when sections shrink — give
+     a bit more breathing room. */
+  .how-card p,
+  .mode-card p,
+  .trig-desc {
+    font-size: 13.5px;
+  }
+  .section-standalone {
+    padding-top: 72px;
+  }
+  .hero {
+    padding: 72px 16px 20px;
+  }
+  .hero-title {
+    margin-bottom: 20px;
+  }
+  /* The top tag line ("AI that can see your screen and blur all of the")
+     is too long for one phone-width row. Shrink the font on phones
+     and let it wrap to two lines. */
+  .tag-line-top {
+    font-size: 15px;
+    line-height: 1.4;
+  }
+  /* Allow the bottom tag line ("naked women", "half-naked boobs", ...)
+     to wrap on phones. nowrap was fine at larger widths but on small
+     screens the longest state ("half-naked boobs") overflows. */
+  .tag-line-bottom {
+    flex-wrap: wrap;
+    white-space: normal;
+    row-gap: 4px;
+  }
+  /* Stretch buttons full-width so the two-button stack reads as
+     "primary action" on touch — same pattern as Linear/Cursor/etc. */
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
+    padding: 0 8px;
+    gap: 10px;
+  }
+  .hero-buttons .btn,
+  .hero-buttons .btn-lg {
+    width: 100%;
+    justify-content: center;
+  }
+  /* On phones the trust line is genuinely too long to fit horizontally
+     even with text wrapping. Switch to a vertical stack: each trust
+     item gets its own line, separators turn into vertical dots that
+     fade visually between rows. */
+  .hero-trust {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+    gap: 4px;
+    line-height: 1.4;
+  }
+  .hero-trust .ht-sep {
+    color: var(--lav-deep);
+    opacity: 0.5;
+    margin: 0;
+    font-size: 10px;
+  }
+  /* The hero title was clipping at iPhone SE width (375px) because
+     the global clamp min of 64px was wider than the available content
+     area. On phones we cap it tighter — 12vw is the widest "Anti Goon"
+     can be at Inter 700 with -0.05em letter-spacing without overflowing
+     the 343px content area at 375px viewport. */
+  .hero-title {
+    /* At 375px we need ~32px to keep "Anti Goon" inside the 343px
+       content area at Inter 700 + -0.04em letter-spacing. clamp scales
+       up to 52px for the 560px breakpoint. Desktop clamp above stays
+       at 64–180 for normal-sized screens. */
+    font-size: clamp(32px, 9vw, 52px);
+    letter-spacing: -0.04em;
+  }
+  .punchline {
+    padding: 36px 16px;
+  }
+  /* Card padding tightens once more on phones. */
+  .how-card,
+  .mode-card,
+  .trig-card,
+  .hk-card,
+  .faq-item {
+    padding: 22px 18px;
+  }
+  .how-card h3 {
+    font-size: 19px;
+  }
+  .how-num,
+  .mode-pill {
+    font-size: 10px;
+  }
+  /* The "macOS window" demo inside each mode card has fixed-position
+     overlay blurs whose absolute coordinates were tuned for desktop
+     widths. They still work on narrow widths because they use percentages,
+     but a smaller titlebar reads cleaner on a phone. */
+  .mode-titlebar {
+    padding: 8px 12px;
+  }
+  .mode-titlebar .dot {
+    width: 8px;
+    height: 8px;
+  }
+  .mode-url {
+    font-size: 11px;
+  }
+  /* Footer goes fully stacked: brand block on top, link column under it. */
+  .footer {
+    padding: 36px 20px 24px;
+  }
+  .footer-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+  }
+  .footer-brand {
+    max-width: 100%;
+  }
+  .footer-links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 18px;
+    row-gap: 10px;
+  }
+  .footer-socials {
+    margin-top: 14px;
+  }
+  /* Hotkey caps shrink slightly so the row doesn't push the card
+     wider than the screen on long combos. */
+  .hk-key {
+    min-width: 26px;
+    height: 26px;
+    padding: 0 7px;
+    font-size: 12px;
+  }
+  /* Trigger card grid is already 1-col below 600px, but tighten the
+     trigger card number badge so it doesn't feel oversized. */
+  .trig-number {
+    font-size: 36px;
+  }
+  /* Inline keycaps in FAQ / Manual mode prose are slightly tighter. */
+  .inline-kbd {
+    font-size: 0.82em;
+  }
+}
+
+/* ---- 380px: small phone safety net ---- */
+@media (max-width: 380px) {
+  .section {
+    padding: 36px 14px;
+  }
+  .hero {
+    padding: 60px 14px 16px;
+  }
+  /* Tag line top: force wrap on tiny phones. */
+  .tag-line-top {
+    font-size: 13px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    max-width: 100%;
+  }
+  /* "Half-naked" + "boobs" is the longest state of the rotating words —
+     guarantee enough breathing room when it fires. */
+  .tag-line-bottom {
+    font-size: 26px;
+    line-height: 1.2;
+  }
+  .footer-links {
+    column-gap: 14px;
+  }
+}
+
+/* ---- Universal overflow guard ----
+   On any width, never let a child element force the body to scroll
+   sideways. This is the safety net for any animation, decorative
+   overlay, or computed transform that occasionally tries to overflow. */
+html,
+body {
+  overflow-x: hidden;
 }

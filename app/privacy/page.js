@@ -27,8 +27,8 @@ export default function PrivacyPage() {
       </div>
 
       <section
-        className="section"
-        style={{ paddingTop: "120px", maxWidth: 760, margin: "0 auto" }}
+        className="section section-standalone"
+        style={{ maxWidth: 760, margin: "0 auto" }}
       >
         <div className="section-head">
           <span className="eyebrow">

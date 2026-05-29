@@ -30,7 +30,7 @@ export default function Install() {
         <div className="grain"></div>
       </div>
 
-      <section className="section" style={{ paddingTop: "120px", maxWidth: 820, margin: "0 auto" }}>
+      <section className="section section-standalone" style={{ maxWidth: 820, margin: "0 auto" }}>
         <div className="section-head">
           <span className="eyebrow">
             <span className="eyebrow-num">→</span>
