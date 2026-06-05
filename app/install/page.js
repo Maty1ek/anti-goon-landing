@@ -1,10 +1,8 @@
 // /install — macOS download + first-launch guide.
 //
-// The .app is ad-hoc signed (no Apple Developer ID yet), so the first
-// open is blocked by Gatekeeper. This page hands the user the download
-// AND the exact "Open Anyway" steps so the block doesn't read as "the
-// app is broken." When you notarise later, you can delete the Gatekeeper
-// section and this page becomes a plain download/landing.
+// The .app is signed with a Developer ID and notarised by Apple, so it
+// opens without any Gatekeeper workaround. This page is a plain
+// download + permissions guide.
 
 // Download URL served from a public GitHub Release. Repo is intentionally
 // public so this asset is reachable without auth; product paywall lives
@@ -38,8 +36,8 @@ export default function Install() {
           </span>
           <h2 className="section-title">Get Anti-Goon running.</h2>
           <p className="section-sub">
-            One download, three one-time setup steps, then it opens on its
-            own forever. Takes about two minutes.
+            One download, two one-time setup steps, then it opens on its
+            own forever. Takes about a minute.
           </p>
         </div>
 
@@ -65,25 +63,7 @@ export default function Install() {
           </li>
 
           <li>
-            <h3>2 · Run one setup command</h3>
-            <p>
-              Anti-Goon isn’t registered with Apple’s paid notarisation
-              service yet, so macOS flags it as “unverified.” One command
-              clears that flag — this is also what stops macOS from asking for
-              permissions every time you open the app. Open{" "}
-              <strong>Terminal</strong> (Spotlight → type “Terminal”), paste
-              this line, and press Return:
-            </p>
-            <code className="install-cmd">xattr -dr com.apple.quarantine /Applications/Anti-Goon.app</code>
-            <p className="install-fallback">
-              Nothing visible happens — that’s correct. The command is safe: it
-              only removes the “downloaded from the internet” marker from
-              Anti-Goon.
-            </p>
-          </li>
-
-          <li>
-            <h3>3 · Open it and grant two permissions</h3>
+            <h3>2 · Open it and grant two permissions</h3>
             <p>
               Open Anti-Goon from Applications. It asks for two macOS
               permissions on first run:
@@ -106,7 +86,7 @@ export default function Install() {
           </li>
 
           <li>
-            <h3>4 · It opens on its own from now on</h3>
+            <h3>3 · It opens on its own from now on</h3>
             <p>
               Anti-Goon registers itself to launch automatically every time
               you log in — protection is on before your browser is. You
