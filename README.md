@@ -1,6 +1,6 @@
-# Anti-Goon — Next.js
+# Anti-Glaze — Next.js
 
-1:1 port of the original static site (`../anti-goon-website`) into Next.js 14
+1:1 port of the original static site (`../anti-glaze-website`) into Next.js 14
 (App Router). Visuals, animations, and interactive behavior are byte-identical
 because the same `styles.css` and `script.js` are reused unchanged:
 

@@ -8,15 +8,15 @@
 // public so this asset is reachable without auth; product paywall lives
 // in Supabase + Whop, not in the binary.
 //
-// To ship a new version: bump version in antigoon.spec, rebuild DMG,
+// To ship a new version: bump version in antiglaze.spec, rebuild DMG,
 // publish a new GitHub Release with the tag below updated, then change
 // the constant here.
 const MAC_DMG_URL =
-  "https://github.com/Maty1ek/anti-goon-landing/releases/download/v0.1.0/Anti-Goon-0.1.0.dmg";
+  "https://github.com/Maty1ek/anti-goon-landing/releases/download/v0.1.0/Anti-Glaze-0.1.0.dmg";
 
 export const metadata = {
-  title: "Install Anti-Goon for macOS",
-  description: "Download Anti-Goon and finish the one-time macOS setup.",
+  title: "Install Anti-Glaze for macOS",
+  description: "Download Anti-Glaze and finish the one-time macOS setup.",
 };
 
 export default function Install() {
@@ -34,7 +34,7 @@ export default function Install() {
             <span className="eyebrow-num">→</span>
             <span className="eyebrow-text">Install · macOS</span>
           </span>
-          <h2 className="section-title">Get Anti-Goon running.</h2>
+          <h2 className="section-title">Get Anti-Glaze running.</h2>
           <p className="section-sub">
             One download, two one-time setup steps, then it opens on its
             own forever. Takes about a minute.
@@ -56,8 +56,8 @@ export default function Install() {
           <li>
             <h3>1 · Move it to Applications</h3>
             <p>
-              Open the downloaded <code>Anti-Goon.dmg</code> and drag the
-              Anti-Goon icon onto the <strong>Applications</strong> folder.
+              Open the downloaded <code>Anti-Glaze.dmg</code> and drag the
+              Anti-Glaze icon onto the <strong>Applications</strong> folder.
               Then eject the disk image.
             </p>
           </li>
@@ -65,7 +65,7 @@ export default function Install() {
           <li>
             <h3>2 · Open it and grant two permissions</h3>
             <p>
-              Open Anti-Goon from Applications. It asks for two macOS
+              Open Anti-Glaze from Applications. It asks for two macOS
               permissions on first run:
             </p>
             <ul>
@@ -79,7 +79,7 @@ export default function Install() {
               </li>
             </ul>
             <p>
-              After enabling each one, <strong>quit Anti-Goon completely
+              After enabling each one, <strong>quit Anti-Glaze completely
               (⌘Q) and reopen it</strong> — macOS only applies a new permission
               to a freshly launched app. You only do this once.
             </p>
@@ -88,13 +88,13 @@ export default function Install() {
           <li>
             <h3>3 · It opens on its own from now on</h3>
             <p>
-              Anti-Goon registers itself to launch automatically every time
+              Anti-Glaze registers itself to launch automatically every time
               you log in — protection is on before your browser is. You
               don't need to do anything for this; it's set up on first
               run.
             </p>
             <p className="install-fallback">
-              Want to disable it? Open Anti-Goon → click the{" "}
+              Want to disable it? Open Anti-Glaze → click the{" "}
               <strong>gear icon</strong> in the dashboard → Settings →{" "}
               <strong>General</strong> → toggle <em>Open at login</em> off.
               You can flip it back on from the same place.
@@ -128,26 +128,28 @@ export default function Install() {
           max-width: 680px;
         }
         .install-steps > li {
-          background: rgba(255,255,255,0.03);
-          border: 1px solid rgba(255,255,255,0.08);
+          background: var(--bg-card);
+          border: 1px solid var(--rule);
           border-radius: 16px;
           padding: 24px 28px;
+          box-shadow: var(--shadow-soft);
         }
         .install-steps h3 {
           font-size: 1.05rem;
           font-weight: 700;
           margin: 0 0 10px;
-          color: #fff;
+          color: var(--ink);
         }
-        .install-steps p { color: rgba(255,255,255,0.62); line-height: 1.6; margin: 0 0 8px; }
-        .install-steps ul { margin: 8px 0 0; padding-left: 20px; color: rgba(255,255,255,0.62); line-height: 1.7; }
+        .install-steps p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; }
+        .install-steps ul { margin: 8px 0 0; padding-left: 20px; color: var(--muted); line-height: 1.7; }
         .install-steps li li { margin-bottom: 4px; }
+        .install-steps strong { color: var(--ink-2); }
         .install-steps code {
-          background: rgba(255,255,255,0.08);
+          background: var(--bg-soft);
           padding: 2px 7px;
           border-radius: 6px;
           font-size: 0.86em;
-          color: #e8e8ff;
+          color: var(--violet);
         }
         .install-cmd {
           display: block;
@@ -160,7 +162,7 @@ export default function Install() {
         .install-fallback {
           margin-top: 14px !important;
           padding-top: 14px;
-          border-top: 1px dashed rgba(255,255,255,0.12);
+          border-top: 1px dashed var(--rule-2);
           font-size: 0.92rem;
         }
       `}</style>

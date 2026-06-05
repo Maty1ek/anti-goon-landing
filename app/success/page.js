@@ -101,7 +101,7 @@ function SuccessInner() {
       <div className="su-card">
         <div className="su-brand">
           <span className="brand-mark"></span>
-          <span className="su-brand-name">Anti-Goon</span>
+          <span className="su-brand-name">Anti-Glaze</span>
         </div>
 
         <div className="su-check" aria-hidden="true">
@@ -124,7 +124,7 @@ function SuccessInner() {
         </h1>
 
         <p className="su-sub">
-          Thanks for upgrading. Return to the Anti-Goon desktop app — it's
+          Thanks for upgrading. Return to the Anti-Glaze desktop app — it's
           already polling for your new subscription and will unlock
           automatically within a few seconds.
         </p>
@@ -135,7 +135,7 @@ function SuccessInner() {
           <li>
             <span className="su-step-num">1</span>
             <div>
-              <strong>Switch back to the Anti-Goon app.</strong>
+              <strong>Switch back to the Anti-Glaze app.</strong>
               <span>
                 It's still waiting on the "Finish in your browser" screen.
               </span>

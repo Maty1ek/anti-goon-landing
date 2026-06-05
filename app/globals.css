@@ -1,5 +1,5 @@
 /* ============================================================
-   Anti-Goon Landing — Soft pink × lavender × cream
+   Anti-Glaze Landing — Soft pink × lavender × cream
    Aesthetic, minimalistic, demonstrative, modern.
    ============================================================ */
 
@@ -278,7 +278,7 @@ img, svg { display: block; max-width: 100%; }
   margin: 0 auto;
 }
 
-/* Huge centered "Anti Goon" title — single font, single gradient color. */
+/* Huge centered "Anti Glaze" title — single font, single gradient color. */
 .hero-title {
   font-family: var(--font-sans);
   font-size: clamp(64px, 13vw, 180px);
@@ -2721,7 +2721,7 @@ img, svg { display: block; max-width: 100%; }
     padding-top: 72px;
   }
   .hero {
-    /* More breathing room above the title — "Anti Goon" is the
+    /* More breathing room above the title — "Anti Glaze" is the
        first thing readers see and the extra top padding makes it
        land like a poster. */
     padding: 112px 16px 28px;

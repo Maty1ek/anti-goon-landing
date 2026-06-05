@@ -10,9 +10,9 @@
 //   - No analytics, no telemetry, no third-party trackers.
 
 export const metadata = {
-  title: "Privacy — Anti-Goon",
+  title: "Privacy — Anti-Glaze",
   description:
-    "How Anti-Goon handles your data: on-device screen processing, account info in Supabase, payments through Whop, and nothing else.",
+    "How Anti-Glaze handles your data: on-device screen processing, account info in Supabase, payments through Whop, and nothing else.",
 };
 
 const LAST_UPDATED = "May 28, 2026";
@@ -39,10 +39,10 @@ export default function PrivacyPage() {
             Your screen stays on your screen.
           </h2>
           <p className="section-sub">
-            Anti-Goon is built so the smallest amount of data leaves your
+            Anti-Glaze is built so the smallest amount of data leaves your
             machine. Here's exactly what does, what doesn't, and why.
           </p>
-          <p style={{ marginTop: 10, fontSize: 13, color: "rgba(255,255,255,0.45)" }}>
+          <p style={{ marginTop: 10, fontSize: 13, color: "var(--faint)" }}>
             Last updated: {LAST_UPDATED}
           </p>
         </div>
@@ -88,10 +88,10 @@ export default function PrivacyPage() {
               <li>Screen captures are stored in RAM only and discarded after each frame.</li>
               <li>The detection model is loaded from inside the <code>.app</code> bundle — no model download, no model update calls.</li>
               <li>No frame, no detection result, no inference latency, no error trace is ever transmitted anywhere.</li>
-              <li>Anti-Goon does not contain any analytics SDKs, crash reporters, or background telemetry.</li>
+              <li>Anti-Glaze does not contain any analytics SDKs, crash reporters, or background telemetry.</li>
             </ul>
             <p>
-              You can verify this by running Anti-Goon offline — protection
+              You can verify this by running Anti-Glaze offline — protection
               works identically without an internet connection. The only
               network calls the app ever makes are the account / payment
               calls listed below.
@@ -185,7 +185,7 @@ export default function PrivacyPage() {
           </article>
 
           <article className="priv-block">
-            <h3>Permissions Anti-Goon asks for</h3>
+            <h3>Permissions Anti-Glaze asks for</h3>
             <ul>
               <li>
                 <strong>Screen Recording</strong> (macOS) — required for
@@ -201,7 +201,7 @@ export default function PrivacyPage() {
               </li>
               <li>
                 <strong>Open at login</strong> — opt-in on first launch.
-                Installs a per-user LaunchAgent that opens Anti-Goon
+                Installs a per-user LaunchAgent that opens Anti-Glaze
                 when you log in. Disable it any time in Settings →
                 General → Open at login.
               </li>
@@ -212,7 +212,7 @@ export default function PrivacyPage() {
             <h3>Contact</h3>
             <p>
               Questions, deletion requests, or anything else:{" "}
-              <a href="mailto:hello@anti-goon.app">hello@anti-goon.app</a>.
+              <a href="mailto:hello@anti-glaze.app">hello@anti-glaze.app</a>.
             </p>
           </article>
 
@@ -243,27 +243,28 @@ export default function PrivacyPage() {
           gap: 20px;
         }
         .priv-block {
-          background: rgba(255,255,255,0.03);
-          border: 1px solid rgba(255,255,255,0.08);
+          background: var(--bg-card);
+          border: 1px solid var(--rule);
           border-radius: 16px;
           padding: 26px 30px;
+          box-shadow: var(--shadow-soft);
         }
         .priv-block h3 {
           font-size: 1.15rem;
           font-weight: 700;
           margin: 0 0 14px;
-          color: #fff;
+          color: var(--ink);
           letter-spacing: -0.2px;
         }
         .priv-block h4 {
           font-size: 0.98rem;
           font-weight: 700;
           margin: 16px 0 8px;
-          color: rgba(255,255,255,0.88);
+          color: var(--ink-2);
         }
         .priv-block p,
         .priv-block li {
-          color: rgba(255,255,255,0.66);
+          color: var(--muted);
           line-height: 1.65;
           font-size: 14.5px;
         }
@@ -273,20 +274,20 @@ export default function PrivacyPage() {
           padding-left: 20px;
         }
         .priv-block li { margin-bottom: 6px; }
-        .priv-block strong { color: rgba(255,255,255,0.92); font-weight: 600; }
+        .priv-block strong { color: var(--ink-2); font-weight: 600; }
         .priv-block code {
-          background: rgba(255,255,255,0.08);
+          background: var(--bg-soft);
           padding: 1.5px 6px;
           border-radius: 5px;
           font-size: 0.86em;
-          color: #e8e8ff;
+          color: var(--violet);
         }
         .priv-block a {
-          color: #c4b5fd;
+          color: var(--lav-deep);
           text-decoration: underline;
           text-underline-offset: 2px;
         }
-        .priv-block a:hover { color: #fff; }
+        .priv-block a:hover { color: var(--violet); }
       `}</style>
     </>
   );

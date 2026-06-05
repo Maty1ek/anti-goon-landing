@@ -13,11 +13,11 @@ export default function Home() {
   // can be set per-deploy (Vercel project env -> Production) without
   // touching code. The fallbacks below are placeholders; configure the
   // env vars on Vercel before pointing real traffic at this site.
-  const TIKTOK_URL    = process.env.NEXT_PUBLIC_TIKTOK_URL    || "https://www.tiktok.com/@antigoon";
-  const X_URL         = process.env.NEXT_PUBLIC_X_URL         || "https://x.com/antigoon";
-  const INSTAGRAM_URL = process.env.NEXT_PUBLIC_INSTAGRAM_URL || "https://instagram.com/antigoon";
-  const DISCORD_URL   = process.env.NEXT_PUBLIC_DISCORD_URL   || "https://discord.gg/antigoon";
-  const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "hello@anti-goon.app";
+  const TIKTOK_URL    = process.env.NEXT_PUBLIC_TIKTOK_URL    || "https://www.tiktok.com/@antiglaze";
+  const X_URL         = process.env.NEXT_PUBLIC_X_URL         || "https://x.com/antiglaze";
+  const INSTAGRAM_URL = process.env.NEXT_PUBLIC_INSTAGRAM_URL || "https://instagram.com/antiglaze";
+  const DISCORD_URL   = process.env.NEXT_PUBLIC_DISCORD_URL   || "https://discord.gg/antiglaze";
+  const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "hello@anti-glaze.app";
 
 
   return (
@@ -33,7 +33,7 @@ export default function Home() {
       {/* Hero */}
       <section className="hero">
         <div className="hero-inner">
-          <h1 className="hero-title fade-in">Anti Goon</h1>
+          <h1 className="hero-title fade-in">Anti Glaze</h1>
 
           <p className="hero-tagline fade-in delay-1">
             <span className="tag-line-top">
@@ -119,7 +119,7 @@ export default function Home() {
             <span className="hl-woman">WOMAN</span>.
           </h2>
           <p className="section-sub">
-            Anti-Goon runs silently on your machine. No browser extension, no
+            Anti-Glaze runs silently on your machine. No browser extension, no
             DNS hacks, no router setup. Just open it once and forget it exists.
           </p>
         </div>
@@ -230,7 +230,7 @@ export default function Home() {
             Pick how she <span className="hl-woman">vanishes</span>.
           </h2>
           <p className="section-sub">
-            Three shields built into Anti-Goon. Anchor one blur to your screen,
+            Three shields built into Anti-Glaze. Anchor one blur to your screen,
             let the detector hunt every trigger individually, or drop a blur
             wherever you want with a single hotkey.
           </p>
@@ -388,7 +388,7 @@ export default function Home() {
             <span className="hl-woman">Stack any combination.</span>
           </h2>
           <p className="section-sub">
-            Tune Anti-Goon to your exact fight. Pick one, pick all four, or
+            Tune Anti-Glaze to your exact fight. Pick one, pick all four, or
             anything between — each trigger fires independently.
           </p>
         </div>
@@ -445,7 +445,7 @@ export default function Home() {
           </h2>
           <p className="section-sub">
             Every action you need is one keystroke away — even when
-            Anti-Goon is in the background. Rebind any of them from
+            Anti-Glaze is in the background. Rebind any of them from
             Settings → Shortcuts.
           </p>
         </div>
@@ -525,7 +525,7 @@ export default function Home() {
 
         <div className="faq-list">
           <details className="faq-item reveal">
-            <summary>Does Anti-Goon send my screen to a server?</summary>
+            <summary>Does Anti-Glaze send my screen to a server?</summary>
             <p>
               No. Every frame is processed locally on your CPU/GPU. We
               literally cannot see your screen because nothing leaves your
@@ -552,7 +552,7 @@ export default function Home() {
           <details className="faq-item reveal">
             <summary>Does it open on its own when I turn on my Mac?</summary>
             <p>
-              Yes. Anti-Goon adds a LaunchAgent on first install so it
+              Yes. Anti-Glaze adds a LaunchAgent on first install so it
               opens automatically every time you log in — protection is on
               before you can even open a browser. Don't want it? One
               toggle in Settings → General → <em>Open at login</em>{" "}
@@ -565,7 +565,7 @@ export default function Home() {
               One toggle in the dashboard pauses it.{" "}
               <kbd className="inline-kbd">⌘⇧Z</kbd> does the same from
               anywhere on your Mac. Sign out and it's fully dormant.
-              You're always in control — Anti-Goon is a tool, not a
+              You're always in control — Anti-Glaze is a tool, not a
               jailer.
             </p>
           </details>
@@ -603,7 +603,7 @@ export default function Home() {
         <div className="cta-card reveal">
           <h2 className="cta-title">Install it. Forget it's there.</h2>
           <p className="cta-sub">
-            Anti-Goon runs quietly in the background. The detector watches, the
+            Anti-Glaze runs quietly in the background. The detector watches, the
             blur lands, you keep scrolling.
           </p>
           <div className="cta-buttons">
@@ -630,7 +630,7 @@ export default function Home() {
           <div className="footer-brand">
             <div className="brand">
               <span className="brand-mark"></span>
-              <span className="brand-name">Anti-Goon</span>
+              <span className="brand-name">Anti-Glaze</span>
             </div>
             <p className="footer-tagline">
               AI that sees your screen and blurs every woman it detects.
@@ -701,7 +701,7 @@ export default function Home() {
           </div>
         </div>
         <div className="footer-bottom">
-          <p>© 2026 Anti-Goon. Built quietly, for people who chose better.</p>
+          <p>© 2026 Anti-Glaze. Built quietly, for people who chose better.</p>
         </div>
       </footer>
     </>
