@@ -2,6 +2,7 @@ import "./globals.css";
 import Script from "next/script";
 
 export const metadata = {
+  metadataBase: new URL("https://anti-glaze.com"),
   title: "Anti-Glaze — AI that blurs your screen in real time.",
   description:
     "Anti-Glaze is the desktop AI that sees your screen and blurs every woman it detects — nude, in a bikini, or in tight clothes.",
