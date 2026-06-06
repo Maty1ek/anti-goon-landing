@@ -12,6 +12,13 @@ const WHOP_API_KEY = process.env.WHOP_API_KEY;
 // key applies regardless of which API version you call.
 const WHOP_API_BASE = "https://api.whop.com/api/v2";
 
+// Checkout *configurations* live on the V1 API. We create one server-side so
+// the buyer's Supabase user_id is bound to the checkout as metadata — which
+// then arrives in the membership webhook reliably (URL-param metadata on the
+// hosted checkout gets dropped, which is what caused payments to activate the
+// wrong / no account).
+const WHOP_API_V1_BASE = "https://api.whop.com/api/v1";
+
 export function envCheck() {
   if (!SUPABASE_URL || !SERVICE_ROLE_KEY) {
     return { ok: false, status: 500, body: { error: "server_misconfigured" } };
@@ -149,4 +156,77 @@ export async function deleteAuthUser(userId) {
     } catch {}
     throw new Error(`admin delete failed: ${res.status} ${text}`);
   }
+}
+
+/**
+ * Create a Whop checkout configuration for `planId` with the buyer's Supabase
+ * `userId` attached as metadata, and return a hosted checkout URL to open.
+ *
+ * This is the fix for "paid with a different email at checkout → plan never
+ * activated for my account." Metadata bound to a checkout configuration is
+ * carried through to the resulting membership and into the webhook payload, so
+ * `whop-webhook` resolves the right account by user_id regardless of the email
+ * the buyer types (or which Whop account their browser is signed into).
+ *
+ * Returns { ok, status, body }. On success body is { url, checkout_id }.
+ */
+export async function createWhopCheckout({ planId, userId, redirectUrl }) {
+  if (!WHOP_API_KEY) {
+    return { ok: false, status: 500, body: { error: "whop_not_configured" } };
+  }
+  const url = `${WHOP_API_V1_BASE}/checkout_configurations`;
+  const payload = {
+    plan_id: planId,
+    mode: "payment",
+    metadata: { user_id: userId },
+    allow_promo_codes: true,
+  };
+  if (redirectUrl) payload.redirect_url = redirectUrl;
+
+  let res;
+  try {
+    res = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${WHOP_API_KEY}`,
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+  } catch (e) {
+    console.error("[whop-checkout] network error", e);
+    return { ok: false, status: 502, body: { error: "whop_unreachable" } };
+  }
+
+  // Read as text first — Whop error responses are sometimes HTML.
+  const text = await res.text();
+  let body = {};
+  try {
+    body = text ? JSON.parse(text) : {};
+  } catch {
+    body = { raw: text };
+  }
+
+  if (!res.ok) {
+    console.error(
+      "[whop-checkout] FAILED",
+      res.status,
+      "body=",
+      text.slice(0, 800),
+    );
+    return { ok: false, status: res.status, body };
+  }
+
+  // purchase_url is a relative path like "/checkout/plan_xxx?session=ch_xxx".
+  const purchase = body.purchase_url || "";
+  if (!purchase) {
+    console.error("[whop-checkout] no purchase_url in response", text.slice(0, 800));
+    return { ok: false, status: 502, body: { error: "no_purchase_url", whop_body: body } };
+  }
+  const fullUrl = purchase.startsWith("http")
+    ? purchase
+    : `https://whop.com${purchase}`;
+  console.log("[whop-checkout] OK", res.status, "checkout=", body.id);
+  return { ok: true, status: 200, body: { url: fullUrl, checkout_id: body.id } };
 }
