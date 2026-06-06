@@ -24,7 +24,7 @@ export const dynamic = "force-dynamic";
 // Only these plans may be checked out. Keep in sync with whop_config.py
 // (WHOP_MONTHLY_PLAN_ID / WHOP_ANNUAL_PLAN_ID) in the desktop app.
 const ALLOWED_PLANS = new Set([
-  "plan_dXuJFhYoPEYht", // monthly $14.99
+  "plan_bKMgeGI8iShcU", // monthly $12.99
   "plan_bDVCVdhNULbEW", // annual  $99
 ]);
 
